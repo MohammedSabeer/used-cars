@@ -4,7 +4,7 @@ import 'product_list_page.dart';
 class OrderConfirmationPage extends StatelessWidget {
   final double total;
 
-  const OrderConfirmationPage({Key? key, required this.total}) : super(key: key);
+  const OrderConfirmationPage({super.key, required this.total});
 
   @override
   Widget build(BuildContext context) {

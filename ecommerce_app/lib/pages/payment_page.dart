@@ -6,7 +6,7 @@ import 'order_confirmation_page.dart';
 class PaymentPage extends StatefulWidget {
   final double total;
 
-  const PaymentPage({Key? key, required this.total}) : super(key: key);
+  const PaymentPage({super.key, required this.total});
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();

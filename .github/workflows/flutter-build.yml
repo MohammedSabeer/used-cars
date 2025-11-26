@@ -25,27 +25,19 @@ jobs:
           channel: 'stable'
 
       - name: Get dependencies
-        run: |
-          cd ecommerce_app
-          flutter pub get
+        run: flutter pub get
 
       - name: Run analyzer
-        run: |
-          cd ecommerce_app
-          flutter analyze
+        run: flutter analyze
 
       - name: Run tests
-        run: |
-          cd ecommerce_app
-          flutter test
+        run: flutter test
 
       - name: Build web
-        run: |
-          cd ecommerce_app
-          flutter build web --release
+        run: flutter build web --release
         
       - name: Upload web artifacts
         uses: actions/upload-artifact@v4
         with:
           name: flutter-web
-          path: ecommerce_app/build/web/
+          path: build/web/

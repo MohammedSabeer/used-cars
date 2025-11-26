@@ -1,0 +1,51 @@
+name: Flutter Build & Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.0'
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: |
+          cd ecommerce_app
+          flutter pub get
+
+      - name: Run analyzer
+        run: |
+          cd ecommerce_app
+          flutter analyze
+
+      - name: Run tests
+        run: |
+          cd ecommerce_app
+          flutter test
+
+      - name: Build web
+        run: |
+          cd ecommerce_app
+          flutter build web --release
+        
+      - name: Upload web artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: flutter-web
+          path: ecommerce_app/build/web/
